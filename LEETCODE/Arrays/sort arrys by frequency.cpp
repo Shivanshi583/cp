@@ -61,3 +61,25 @@ public:
         return ans;
     }
 };
+
+//TC=O(N)
+//USING BUCKET SORT
+class Solution {
+public:
+    string frequencySort(string s) {
+        unordered_map<char,int> mp;
+        for(auto x:s) mp[x]++;
+        int n=s.size();
+        vector<vector<char>>bucket(n+1);
+        for(auto x:mp){
+            bucket[x.second].push_back(x.first);
+        }
+        string ans="";
+        for(int f=n;f>=1;f--){
+            for(char c:bucket[f]){
+                ans+=string(f,c);
+            }
+        }
+        return ans;
+    }
+};
